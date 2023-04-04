@@ -33,4 +33,10 @@ services:
       - ./letsencrypt:/etc/letsencrypt
       - ./www:/var/www/html
 
-  
+  certbot:
+    image: certbot/certbot
+    restart: always
+    volumes:
+      - ./letsencrypt:/etc/letsencrypt
+      - ./www:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email youremail@example.com --agree-tos --no-eff-email --force-renewal -d mustafatufekci.me
