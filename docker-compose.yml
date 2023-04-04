@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  wordpress:
+    image: wordpress:fpm-alpine
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: examplepassword
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 30718008
+    volumes:
+      - ./db:/var/lib/mysql
+
+  
